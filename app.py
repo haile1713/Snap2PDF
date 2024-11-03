@@ -55,7 +55,15 @@ class ImageToPDFConverter:
             pdf=canvas.Canvas(output_pdf_path,pagesize=(612.792))
 
 
-            
+            for image_path in self.image_paths:
+                img=Image.open(image_path)
+                available_width=540
+                available_height=720
+                scale_factor = min(available_width/img.width ,available_height/img.height)
+                new_width=img.width * scale_factor
+                new_height=img.height * scale_factor
+                x_centered=(612-new_width)/2
+                y_centered=(792-new_height)/2
 
 
 
