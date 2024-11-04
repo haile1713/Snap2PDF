@@ -25,7 +25,7 @@ class ImageToPDFConverter:
 
         self.selected_images_listbox.pack(pady=(0, 10), fill=tk.BOTH, expand=True)
 
-        label = tk.Label(self.root, text="Enter output PDF name:")
+        label = tk.Label(self.root, text="Enter output PDF name (optional):")
         label.pack()
 
         pdf_name_entry = tk.Entry(self.root, textvariable=self.output_pdf_name, width=40, justify='center')
@@ -50,7 +50,14 @@ class ImageToPDFConverter:
         if not self.image_paths:
             return
 
-        output_pdf_path = self.output_pdf_name.get() + ".pdf" if self.output_pdf_name.get() else "output.pdf"
+        # Ask the user where to save the PDF
+        output_pdf_path = filedialog.asksaveasfilename(
+            defaultextension=".pdf",
+            filetypes=[("PDF files", "*.pdf")],
+            title="Save PDF As"
+        )
+        if not output_pdf_path:
+            return  # User canceled the save dialog
 
         pdf = canvas.Canvas(output_pdf_path, pagesize=(612, 792))
 
