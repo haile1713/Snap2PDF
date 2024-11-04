@@ -52,7 +52,7 @@ class ImageToPDFConverter:
         convert_button.pack(pady=20)
 
         # Footer
-        footer_label = tk.Label(self.root, text="Developed by [Your Name]", bg="#f0f0f0", font=("Helvetica", 8), fg="gray")
+        footer_label = tk.Label(self.root, text="Developed by [Haileleul Fiseha]", bg="#f0f0f0", font=("Helvetica", 8), fg="gray")
         footer_label.pack(pady=10)
 
     def select_images(self):
