@@ -17,11 +17,17 @@ Snap2PDF is a user-friendly desktop application built with Python and Tkinter th
 5. **Enjoy Your PDF**: Your images will be converted to a PDF and saved to the selected location.
    
 ## Screen Shoots
+
   **home page**
+  
   ![image](https://github.com/user-attachments/assets/f8b5d57c-2975-4c49-84c4-6713875c44ed)
+  
   **while converting**
+  
   ![Screenshot 2024-11-04 150652](https://github.com/user-attachments/assets/3780eb9c-cb71-46fb-8bd3-6da1d4bf7df7)
+  
   **output**
+  
   ![image](https://github.com/user-attachments/assets/211d12c7-f91e-40da-a1b9-eb58ff9a00ca)
   
 ## Download
