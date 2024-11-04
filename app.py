@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, ttk
 from reportlab.pdfgen import canvas
 from PIL import Image
 import os
@@ -9,30 +9,51 @@ class ImageToPDFConverter:
         self.root = root
         self.image_paths = []
         self.output_pdf_name = tk.StringVar()
-        self.selected_images_listbox = tk.Listbox(root, selectmode=tk.MULTIPLE)
+
+        # Set window properties
+        self.root.title("Snap2PDF - Image to PDF Converter")
+        self.root.geometry("500x700")
+        self.root.configure(bg="#f0f0f0")
 
         self.initialize_ui()
 
     def initialize_ui(self):
-        # Title Labels
-        title_label1 = tk.Label(self.root, text="Snap2PDF", font=("helvetica", 16, "bold"))
-        title_label2 = tk.Label(self.root, text="Image to PDF converter", font=("helvetica", 16, "bold"))
-        title_label1.pack(pady=10)
-        title_label2.pack(pady=10)
+        # Header Frame
+        header_frame = tk.Frame(self.root, bg="#4CAF50", pady=10)
+        header_frame.pack(fill="x")
 
-        select_images_button = tk.Button(self.root, text="Select Images", command=self.select_images)
-        select_images_button.pack(pady=(0, 10))
+        title_label1 = tk.Label(header_frame, text="Snap2PDF", font=("Helvetica", 20, "bold"), bg="#4CAF50", fg="white")
+        title_label1.pack()
 
-        self.selected_images_listbox.pack(pady=(0, 10), fill=tk.BOTH, expand=True)
+        subtitle_label = tk.Label(header_frame, text="Image to PDF Converter", font=("Helvetica", 12), bg="#4CAF50", fg="white")
+        subtitle_label.pack()
 
-        label = tk.Label(self.root, text="Enter output PDF name (optional):")
+        # Main Frame
+        main_frame = tk.Frame(self.root, bg="#f0f0f0", padx=10, pady=10)
+        main_frame.pack(fill="both", expand=True)
+
+        # Select Images Button
+        select_images_button = tk.Button(main_frame, text="Select Images", command=self.select_images, bg="#2196F3", fg="white", font=("Helvetica", 12))
+        select_images_button.pack(pady=10)
+
+        # Listbox for selected images
+        self.selected_images_listbox = tk.Listbox(main_frame, selectmode=tk.MULTIPLE, height=10, font=("Helvetica", 10))
+        self.selected_images_listbox.pack(pady=10, fill="both", expand=True)
+
+        # PDF Name Entry
+        label = tk.Label(main_frame, text="Enter output PDF name (optional):", bg="#f0f0f0", font=("Helvetica", 10))
         label.pack()
 
-        pdf_name_entry = tk.Entry(self.root, textvariable=self.output_pdf_name, width=40, justify='center')
-        pdf_name_entry.pack()
+        pdf_name_entry = tk.Entry(main_frame, textvariable=self.output_pdf_name, width=40, justify='center', font=("Helvetica", 10))
+        pdf_name_entry.pack(pady=5)
 
-        convert_button = tk.Button(self.root, text="Convert to PDF", command=self.convert_images_to_pdf)
-        convert_button.pack(pady=(20, 40))
+        # Convert Button
+        convert_button = tk.Button(main_frame, text="Convert to PDF", command=self.convert_images_to_pdf, bg="#4CAF50", fg="white", font=("Helvetica", 12))
+        convert_button.pack(pady=20)
+
+        # Footer
+        footer_label = tk.Label(self.root, text="Developed by [Your Name]", bg="#f0f0f0", font=("Helvetica", 8), fg="gray")
+        footer_label.pack(pady=10)
 
     def select_images(self):
         self.image_paths = filedialog.askopenfilenames(
@@ -80,8 +101,6 @@ class ImageToPDFConverter:
 
 def main():
     root = tk.Tk()
-    root.title("Image to PDF")
-    root.geometry("400x600")
     converter = ImageToPDFConverter(root)
     root.mainloop()
 
